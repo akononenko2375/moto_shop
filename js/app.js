@@ -21,7 +21,6 @@ async function sheetData(url) {
             `;
         });
         for (const item of listHTML) {
-            console.log(item);
             cartBox.insertAdjacentHTML('beforeend', item);
         }
     } catch (e) {
