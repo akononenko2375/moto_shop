@@ -42,10 +42,23 @@ body {
     padding: 10px;
 }
 
+.card-price {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-weight: bold;
+    color: rgb(168, 3, 3);
+    font-size: 20px;
+}
+
 .card-body {
     flex: 0 0 0;
 }
 
 .card-text {
     font-size: 12px;
+}
+
+.hideElem {
+    display: none;
 }
