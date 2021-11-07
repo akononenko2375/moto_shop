@@ -1,1 +1,0 @@
-export const opensheet = 'https://opensheet.vercel.app/1r52WWS8-y-hs0PPChtHj_XZgkSPconZCokamfzBS-rY/data'; 
