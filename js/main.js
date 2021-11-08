@@ -1,5 +1,5 @@
-import MotocycleController from '../motocycle/motocycleController.js';
+import MotorcycleController from '../motorcycle/motorcycleController.js';
 
-const motocycle = new MotocycleController();
+const motocycle = new MotorcycleController();
 
 motocycle.init();

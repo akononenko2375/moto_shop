@@ -6,14 +6,13 @@ const dropdownItem = document.querySelectorAll('.dropdown-item');
 sheetData(url);
 // model
 async function sheetData(url) {
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+    const response = await fetch(url);
+    const data = await response.json();
 
-        // рендер карточек
-        function renderMoto(data) {
-            return data.map((el) => {
-                return `
+    // рендер карточек
+    function renderMoto(data) {
+        return data.map((el) => {
+            return `
                 <div class="card ${el['Type of moto']}" style="width: 15rem;">
                 <div class="card-img">
                     <img src=${el.Image} class="card-img-top" alt="...">
@@ -27,32 +26,25 @@ async function sheetData(url) {
                 </div>
               </div>
                 `;
-            });
+        });
+    }
+
+    insertHTML(renderMoto(data), cartBox);
+
+    // сортировка по категориям
+    for (const elem of dropdownItem) {
+        elem.addEventListener('click', function () {
+            const filtered = data.filter((el) => el['Type of moto'] === elem.dataset.filter);
+
+            cartBox.innerHTML = '';
+            insertHTML(renderMoto(filtered), cartBox);
+        });
+    }
+
+    function insertHTML(arr, selector) {
+        for (const item of arr) {
+            selector.insertAdjacentHTML('beforeend', item);
         }
-
-        for (const item of renderMoto(data)) {
-            cartBox.insertAdjacentHTML('beforeend', item);
-        }
-
-
-        // сортировка по категориям
-        for (const elem of dropdownItem) {
-            elem.addEventListener('click', function () {
-                const arr = [];
-                for (let i = 0; i < data.length; i++) {
-                    if (elem.dataset.filter == data[i]['Type of moto']) {
-                        arr.push(data[i]);
-                    }
-                }
-
-                cartBox.innerHTML = '';
-                for (const item of renderMoto(arr)) {
-                    cartBox.insertAdjacentHTML('beforeend', item);
-                }
-            });
-        }
-    } catch (e) {
-        console.log(e.message);
     }
 }
 
